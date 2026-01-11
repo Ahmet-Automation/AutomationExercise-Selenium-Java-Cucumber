@@ -1,0 +1,22 @@
+# Java / Maven
+target/
+*.class
+
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+gen/
+
+# Logs and Reports
+test-output/
+target/surefire-reports/
+*.log
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Environment Files
+.env
+
