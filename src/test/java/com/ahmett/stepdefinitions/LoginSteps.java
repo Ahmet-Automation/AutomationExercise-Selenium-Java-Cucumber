@@ -2,12 +2,15 @@ package com.ahmett.stepdefinitions;
 
 import com.ahmett.pages.LoginPage;
 import com.ahmett.utils.Driver;
+import com.ahmett.utils.ExcelUtil;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
+
+import java.util.Map;
 
 public class LoginSteps {
 
@@ -75,7 +78,28 @@ public class LoginSteps {
         Assert.assertTrue("Login header is not visible!", loginPage.isLoginHeaderVisible());
     }
 
+    // Login Functionality with Excel
+    @When("I login using credentials from excel sheet {string} at row {int}")
+    public void i_login_using_credentials_from_excel_sheet_at_row(String sheetName, Integer rowNumber) {
+        // 1. Specify the path to the Excel file
+        String path = "src/test/resources/TestData.xlsx";
 
+        // 2. Initialize our Excel utility
+        ExcelUtil excel = new ExcelUtil(path, sheetName);
+
+        // 3. Get all data as a list of maps
+        // Row 1 in Feature usually refers to the first data row (index 0 in our list)
+        Map<String, String> data = excel.getDataList().get(rowNumber - 1);
+
+        // 4. Extract specific values using the column headers from your Excel
+        String email = data.get("username");
+        String password = data.get("password");
+
+        // 5. Perform the login actions
+        loginPage.emailInput.sendKeys(email);
+        loginPage.passwordInput.sendKeys(password);
+        loginPage.loginButton.click();
+    }
 
 
 }
