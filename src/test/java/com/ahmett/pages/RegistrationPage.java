@@ -55,6 +55,12 @@ public class RegistrationPage extends BasePage {
     @FindBy(xpath = "//button[@data-qa='create-account']")
     public WebElement createAccountButton;
 
+    @FindBy(xpath = "//b[text()='Account Created!']")
+    public WebElement accountCreatedMessage;
+
+    @FindBy(xpath = "//a[@data-qa='continue-button']")
+    public WebElement continueButton;
+
 
 }
 

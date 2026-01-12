@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com.ahmett.stepdefinitions",
         dryRun = false,
-        tags  = "@LoginWithExel"
+        tags  = "@LoginComprehensive"
 )
 
 public class TestRunner {

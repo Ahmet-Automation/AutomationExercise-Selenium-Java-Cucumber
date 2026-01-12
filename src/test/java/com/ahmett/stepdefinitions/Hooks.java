@@ -1,8 +1,11 @@
 package com.ahmett.stepdefinitions;
 
 import com.ahmett.utils.Driver;
-import org.junit.After;
-import org.junit.Before;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+
+
 
 public class Hooks {
 
@@ -12,7 +15,9 @@ public class Hooks {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown(Scenario scenario) {
+
+        // This ensures the browser closes and resets for the next Excel row
         Driver.closeDriver();
     }
 }

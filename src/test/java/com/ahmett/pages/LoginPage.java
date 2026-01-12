@@ -32,7 +32,7 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//*[contains(text(),'Logged in as')]")
     public WebElement loggedInAsText;
 
-
+    @FindBy(xpath = "//p[contains(text(),'incorrect')]") public WebElement errorMessage;
 
     public boolean isLoginHeaderVisible () {
         return loginToYourAccountHeader.isDisplayed();
