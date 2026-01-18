@@ -63,5 +63,34 @@ public class ProductSteps {
         Assert.assertTrue("Total prices are not visible!", cartPage.totalPrices.get(0).isDisplayed());
     }
 
+    @When("I click {string} for any product on home page")
+    public void i_click_for_any_product_on_home_page(String string) {
+        productsPage.viewProductFirst.click();
+    }
+
+    @Then("I verify product detail is opened")
+    public void i_verify_product_detail_is_opened() {
+        String title = Driver.getDriver().getTitle();
+        Assert.assertTrue(title.contains("Product Details"));
+    }
+
+    @Then("I increase quantity to {string}")
+    public void i_increase_quantity_to(String amount) {
+        productsPage.quantityInput.clear();
+        productsPage.quantityInput.sendKeys(amount);
+    }
+
+    @And("I click 'Add to cart' button from product details page")
+    public void i_click_add_to_cart_button_from_details_page() {
+        // Calling the specific method for detail page
+        productsPage.clickAddToCartFromDetails();
+    }
+
+    @Then("I verify that product is displayed in cart page with quantity {string}")
+    public void i_verify_quantity(String expectedQuantity) {
+        String actualQuantity = cartPage.cartQuantity.getText();
+        Assert.assertEquals("Quantity verification failed!", expectedQuantity, actualQuantity);
+    }
+
 
 }

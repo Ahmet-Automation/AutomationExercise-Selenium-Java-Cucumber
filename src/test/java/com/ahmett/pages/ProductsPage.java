@@ -54,6 +54,21 @@ public class ProductsPage extends BasePage {
         js.executeScript("arguments[0].click();", addToCartSecond);
     }
 
+    // Locators for quantity test
+    @FindBy(xpath = "(//a[text()='View Product'])[1]")
+    public WebElement viewProductFirst;
+
+    @FindBy(id = "quantity")
+    public WebElement quantityInput;
+
+    @FindBy(xpath = "//button[contains(@class,'cart')]")
+    public WebElement addToCartButton;
+
+    public void clickAddToCartFromDetails() {
+        // Handling potential overlays with JS Click
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].click();", addToCartButton);
+    }
 
 
 

@@ -22,5 +22,11 @@ public class CartPage extends BasePage{
     @FindBy(css = ".cart_total_price")
     public List<WebElement> totalPrices;
 
+    // Locator for the quantity value of the product in the cart
+    @FindBy(xpath = "//td[@class='cart_quantity']/button")
+    public WebElement cartQuantity;
+
+
+
 
 }
