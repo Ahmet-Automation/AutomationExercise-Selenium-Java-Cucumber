@@ -1,6 +1,7 @@
 package com.ahmett.pages;
 
 import com.ahmett.utils.Driver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -36,11 +37,23 @@ public class ProductsPage extends BasePage {
         addToCartFirst.click();
     }
 
-    public void hoverAndClickSecondProduct() {
+//    public void hoverAndClickSecondProduct() {
+//        Actions actions = new Actions(Driver.getDriver());
+//        actions.moveToElement(secondProduct).perform();
+//        addToCartSecond.click();
+//    }
+
+
+    public void hoverAndClickSecondProduct () {
+
         Actions actions = new Actions(Driver.getDriver());
         actions.moveToElement(secondProduct).perform();
-        addToCartSecond.click();
+
+        // JS click
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].click();", addToCartSecond);
     }
+
 
 
 
