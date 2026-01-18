@@ -4,7 +4,8 @@ import com.ahmett.utils.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 
 public class Hooks {
@@ -16,8 +17,15 @@ public class Hooks {
 
     @After
     public void tearDown(Scenario scenario) {
+        // Check if the scenario failed
+        if (scenario.isFailed()) {
+            // Take a screenshot as a byte array
+            final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+            // Attach the screenshot to the HTML report
+            scenario.attach(screenshot, "image/png", "screenshot");
+        }
 
-        // This ensures the browser closes and resets for the next Excel row
+        /// Close the driver after each scenario to keep it clean
         Driver.closeDriver();
     }
 }
